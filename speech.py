@@ -1,9 +1,9 @@
 import pyttsx3
 import tkinter as tk
 
-engine = pyttsx3.init()
+voiceEngine = pyttsx3.init()
 
-rate = engine.getProperty('rate')
+rate = voiceEngine.getProperty('rate')
 
 class Widget():
     def __init__(self):
@@ -13,7 +13,7 @@ class Widget():
         self.root.resizable(0, 0)
         self.label1 = tk.Label(self.root, text='Type below to speak or paste something',bg='skyblue')
         self.label1.pack()
-        self.text = tk.Text(self.root,width = 40,height=10)
+        self.text = tk.Text(self.root,width = 50,height=15)
         self.text.config(wrap = 'word')
         self.text.pack()
         self.button = tk.Button(self.root, text='Speak!', command=self.click,bg='skyblue')
@@ -23,11 +23,11 @@ class Widget():
     def speak(self, text):
         newVoiceRate = 130
         while newVoiceRate <= 300:
-            engine.setProperty('rate', newVoiceRate)
-            engine.say(text)
-            engine.runAndWait()
+            voiceEngine.setProperty('rate', newVoiceRate)
+            voiceEngine.say(text)
+            voiceEngine.runAndWait()
             newVoiceRate = newVoiceRate + 130
-        engine.setProperty('rate', 500)
+        voiceEngine.setProperty('rate', 800)
 
     def click(self):
         text = self.text.get('1.0','end')
